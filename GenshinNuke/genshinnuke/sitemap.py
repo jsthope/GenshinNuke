@@ -9,7 +9,7 @@ from django.contrib.sites.models import Site
 class RoomsSitemap(Sitemap):
     def get_urls(self, site=None, **kwargs):
         site = Site(domain='genshinnuke.com', name='genshinnuke.com')
-        return super(RoomsSitemap, self).get_urls(site=site, **kwargs)
+        return super(RoomsSitemap, self).get_urls(site=site, protocol='https',**kwargs)
 
     def items(self):
         return Room.objects.all()
@@ -23,7 +23,7 @@ class StaticViewSitemap(sitemaps.Sitemap):
 
     def get_urls(self, site=None, **kwargs):
         site = Site(domain='genshinnuke.com', name='genshinnuke.com')
-        return super(StaticViewSitemap, self).get_urls(site=site, **kwargs)
+        return super(StaticViewSitemap, self).get_urls(site=site, protocol='https', **kwargs)
     def items(self):
         return ["home", "login", "register" , "logout", "create-room", "privacy-policy"]
 
