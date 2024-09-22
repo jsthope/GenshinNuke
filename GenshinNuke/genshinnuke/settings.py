@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'base.apps.BaseConfig',
     'django.contrib.sitemaps',
+    'django.contrib.sites'
 ]
 SITE_ID = 1  # new
 MIDDLEWARE = [
