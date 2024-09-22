@@ -61,7 +61,7 @@ class Character(models.Model):
 
 class Room(models.Model):
     host = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    title = models.CharField(null=True,max_length=35)
+    title = models.CharField(null=True,max_length=45)
 
     character = models.ForeignKey(Character, on_delete=models.SET_NULL, null=True)
     weapon = models.ForeignKey(Weapon, on_delete=models.SET_NULL, null=True)
