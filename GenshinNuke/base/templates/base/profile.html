@@ -1,0 +1,27 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="columns">
+  <div class="column is-one-third is-one-quarter-desktop">
+    <div class="profilebox">
+      <h2 class="title is-2">{{user.username}}</h2>
+      {% if request.user.username == user.username %}
+      <a href="{% url 'update-profile' user.username %}">
+        <div class="img-container">
+          <img src="{{user.profile.picture.url}}" alt="Profile Picture" class="image is-128x128" loading="lazy">
+          <i class="fa fa-upload overlay-text-centered" aria-hidden="true" style="color: black;font-size:42px"></i>
+        </div> 
+      </a>
+      {% else %}
+      <img src="{{user.profile.picture.url}}" alt="Profile Picture" class="image is-128x128" loading="lazy">
+      {% endif %}
+
+    </div>
+  </div>
+  <div class="column">
+    {% include 'base/feed_component.html' %}
+  </div>
+</div>
+
+{% endblock content %}

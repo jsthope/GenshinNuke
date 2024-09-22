@@ -1,0 +1,69 @@
+<div class="searchresults-container">
+  {% for room in rooms %}
+    <div class="box" style="cursor: pointer;" onclick="window.location='{% url 'room' room.id %}';">
+      <div class="level">
+
+        <div class="level-right">
+        <h3 class="subtitle">
+          <p>{{room.title}}</p>
+        </h3>
+        </div>
+
+        <div class="level-right">
+          <div class="level-item">
+            <div class="level-item">
+              {% if room.host.username %}
+                <div class="usermodule block">
+                  <a href="{% url 'user-profile' room.host.username %}" class="usermodule__link">
+                    {{room.host.username}}
+                    <img src="{{room.host.profile.picture.url}}" class="image is-32x32" alt="avatar image">
+                  </a>
+                </div>
+              {% else %}
+                <a href="">Anonyme</a>
+              {% endif %}
+            </div>
+            {% if request.user == room.host %}
+              <div class="buttons field is-grouped">
+                <a href="{% url 'update-room' room.id %}" class="button is-warning is-outlined">
+                  <span>Edit</span>
+                  <span class="icon is-small">
+                    <i class="fas fa-solid fa-pen"></i>
+                  </span>
+                </a>
+                <a href="{% url 'delete-room' room.id %}" class="button is-danger is-outlined">
+                  <span>Delete</span>
+                  <span class="icon is-small">
+                    <i class="fas fa-solid fa-xmark"></i>
+                  </span>
+                </a>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+
+      <div class="level">
+        <div class="level-left">
+        <div class="feed-box">
+
+          <div class="img-container">
+            <img src="{{room.character.data.images.mihoyo_icon}}" class="image is-128x128" alt="{{room.character.name}}" style="font-size: 0.7em">
+            <span class="tag is-info overlay-text">c{{room.constellation}}</span>
+          </div> 
+          <div class="img-container">
+            <img src="{{room.weapon.data.images.mihoyo_icon}}" class="image is-128x128" alt="{{room.weapon.name}}" style="font-size: 0.7em">
+            <span class="tag is-info overlay-text">r{{room.refinement}}</span>
+          </div> 
+
+        </div>    
+      </div>    
+        <div class="level-right">      
+        <span style="font-family:'HYWenHei 85W';font-weight:normal;font-size:42px;color: {{ room.character.data.elementType|damage_color_selector }}">{{ room.damage }}</span>
+        
+        </div>
+    </div>
+    </div>
+  {% endfor %}
+</div>

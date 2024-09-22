@@ -1,0 +1,32 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div id="editOptionsContainer">
+  <form method="POST" action="" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="file has-name">
+      <label class="file-label" for="{{ form.picture.id_for_label }}" class="label">
+        <div class="control">
+          <input type="file" name="picture" required="" id="{{ form.picture.id_for_label }}" class="file-input" onchange="fileSelect(event)">
+        </div>
+        <span class="file-cta">
+          <span class="file-icon">
+            <i class="fas fa-solid fa-upload"></i>
+          </span>
+          <span class="file-label">
+            Select your profile picture
+          </span>
+        </span>
+        <span class="file-name">
+        </span>
+      </label>
+    </div>
+    <p class="help is-danger">
+      {{ form.picture.errors }}
+    </p>
+    <input type="submit" value="Valider" class="button is-success">
+  </form>
+</div>
+<script defer>function fileSelect(e){document.getElementsByClassName("file-name")[0].innerHTML = e.target.files[0].name;}</script>
+{% endblock content %}

@@ -1,0 +1,57 @@
+<script defer>function diplaynav(){"none"==document.getElementById("navBar").style.display?document.getElementById("navBar").style.display="block":document.getElementById("navBar").style.display="none"}</script>
+<nav class="navbar">
+  <div class="container">
+    <div class="navbar-brand">
+      <a href="/" class="navbar-item">
+        <div class="level">
+        <p class="title is-1">GenshinNuke</p></div>
+      </a>
+      <span class="navbar-burger" data-target="navbarMenuHeroA" onclick="diplaynav()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+    </div>
+    <div id="navBar" class="navbar-menu">
+      <div class="navbar-end">
+        <a href="/" class="navbar-item">
+          <span class="icon-text">
+            <span class="icon">
+              <i class="fas fa-solid fa-home"></i>
+            </span>
+            <span>Home</span>
+          </span>
+        </a>
+
+        {% if request.user.is_authenticated %}
+          <div class="navbar-item">
+            <div class="usermodule">
+              <a href="{% url 'user-profile' request.user %}" class="usermodule__link">
+                <p style="padding-inline: 5px;">{{request.user}}</p>
+                <img src="{{request.user.profile.picture.url}}" class="image is-32x32" alt="Profile Picture">
+
+              </a>
+            </div>
+          </div>
+          <a href="{% url 'logout' %}" class="navbar-item">
+            <span class="icon-text">
+              <span class="icon">
+                <i class="fas fa-solid fa-right-from-bracket"></i>
+              </span>
+              <span>Log out</span>
+            </span>
+          </a>
+          {% else %}
+          <a href="{% url 'login' %}" class="navbar-item">
+            <span class="icon-text">
+              <span class="icon">
+                <i class="fas fa-solid fa-right-to-bracket"></i>
+              </span>
+              <span>Log in</span>
+            </span>
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</nav>

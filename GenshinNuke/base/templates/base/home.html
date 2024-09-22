@@ -1,0 +1,57 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<p class="block">
+  <a href="{% url 'home' %}">Show all</a>
+</p>
+
+<form action="" class="searchoptions">
+
+  <!-- characters -->
+  <input list="characters" name="character" id="character" placeholder="Character" class="input is-medium">
+  <datalist id="characters">
+    {% for character in characters %}
+    <option value="{{character.name}}"></option>
+    {% endfor %}
+  </datalist>
+
+  <!-- weapon -->
+  <input list="weapons" name="weapon" id="weapon" placeholder="Weapon" class="input is-medium">
+  <datalist id="weapons">
+    {% for weapon in weapons %}
+    <option value="{{weapon.name}}"></option>
+    {% endfor %}
+  </datalist>
+
+
+  <div class="control">
+    <button class="searchbutton button is-outlined is-medium has-icons-right">
+      <span>Search</span>
+      <span class="icon is-medium is-right">
+        <i class="fas fa-solid fa-magnifying-glass"></i>
+      </span>
+    </button>
+  </div>
+
+</form>
+
+
+<hr>
+
+<h3 class="block">{{room_count}} nukes found</h3>
+
+<div class="block">
+  <a href="{% url 'create-room' %}" class="button is-success is-outlined">
+    <span class="icon-text">
+      <span class="icon">
+        <i class="fas fa-solid fa-circle-plus"></i>
+      </span>
+      <span>Add your nuke record</span>
+    </span>
+  </a>
+</div>
+
+{% include 'base/feed_component.html' %}
+
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="level">
+
+  <div class="level-left">
+    <h1 class="title is-2">{{room.title}}</h1>
+  </div>   
+
+  <div class="level-right">
+    <div class="img-container">
+      <img src="{{room.character.data.images.mihoyo_icon}}" class="image is-128x128" alt="{{room.character.name}}" style="font-size: 0.7em">
+      <span class="tag is-info overlay-text">c{{room.constellation}}</span>
+    </div> 
+    <div class="img-container">
+    <img src="{{room.weapon.data.images.mihoyo_icon}}" class="image is-128x128" alt="{{room.weapon.name}}" style="font-size: 0.7em">
+    <span class="tag is-info overlay-text">r{{room.refinement}}</span>
+  </div> 
+    <h2 style="font-family:'HYWenHei 85W';font-weight:normal;font-size:42px;color:{{room.character.data.elementType|damage_color_selector}}">{{ room.damage  }}</h2>
+  </div>   
+</div>   
+
+<hr>
+
+
+<div class="level">
+ 
+    <p>{{room.description}}</p>
+  <div class="level-right">    
+    <iframe id="player" type="text/html" width="640" height="360"
+    src="http://www.youtube.com/embed/{{room.proofURL}}?enablejsapi=1&origin=http://example.com"
+    frameborder="0"></iframe>  
+  </div>
+
+</div>
+
+{% endblock %}

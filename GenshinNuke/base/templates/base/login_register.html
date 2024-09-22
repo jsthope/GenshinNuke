@@ -1,0 +1,111 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div id="loginContainer">
+  {% if page == 'login' %}
+    <div class="block">
+      <form action="" method="POST">
+        {% csrf_token %}
+        <div class="field">
+          <label>Username :</label>
+          <div class="control has-icons-left">
+            <input type="text" name="username" placeholder="Enter your username here" class="input" required>
+            <span class="icon is-small is-left">
+              <i class="fas fa-solid fa-user"></i>
+            </span>
+          </div>
+        </div>
+        <div class="field">
+          <label>Password :</label>
+          <div class="control has-icons-left">
+            <input type="password" name="password" placeholder="Enter your password here" class="input" required>
+            <span class="icon is-small is-left">
+              <i class="fas fa-solid fa-lock"></i>
+            </span>
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="control">
+            <input type="submit" value="Login" class="button is-link is-success">
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="block">
+      <p>Not register yet ?</p>
+      <a href="{% url 'register' %}" class="button is-link is-outlined">Register</a>
+    </div>
+
+  {% else %}
+
+  <div class="block">
+    <form action="" method="POST">
+      {% csrf_token %}
+
+      <div class="field">
+        <label for="{{ form.username.id_for_label }}" class="label">Username</label>
+        <div class="control">
+          {{ form.username }}
+        </div>
+        {% if form.username.errors %}
+        <ol>
+          {% for error in form.username.errors %}
+          <p class="help is-danger">{{ error|escape }}</p>                                                                                                                                {% endfor %}
+        </ol>
+        {% endif %}
+      </div>
+
+      <div class="field">
+        <label for="{{ form.email.id_for_label }}" class="label">Email</label>
+        <div class="control">
+          {{ form.email }}
+        </div>
+        {% if form.email.errors %}
+        <ol>
+          {% for error in form.email.errors %}
+          <p class="help is-danger">{{ error|escape }}</p>                                                                                                                      {% endfor %}
+        </ol>
+        {% endif %}
+      </div>
+
+      <div class="field">
+        <label for="{{ form.password1.id_for_label }}" class="label">Password</label>
+        <div class="control">
+          {{ form.password1 }}
+        </div>
+        {% if form.password1.errors %}
+        <ol>
+          {% for error in form.password1.errors %}
+          <p class="help is-danger">{{ error|escape }}</p>                                                                                                                                {% endfor %}
+        </ol>
+        {% endif %}
+      </div>
+
+      <div class="field">
+        <label for="{{ form.password2.id_for_label }}" class="label">Confirm Password</label>
+        <div class="control">
+          {{ form.password2 }}
+        </div>
+        {% if form.password2.errors %}
+        <ol>
+          {% for error in form.password2.errors %}
+          <p class="help is-danger">{{ error|escape }}</p>                                                                                                                            {% endfor %}
+        </ol>
+        {% endif %}
+      </div>
+
+      <input class="button is-success" type="submit" value="Register">
+    </form>
+  </div>
+
+  <div class="block">
+    <p class="label">Already registered ?</p>
+    <a href="{% url 'login' %}" class="button is-link">Login</a>
+  </div>
+
+  {% endif %}
+</div>
+
+{% endblock content %}

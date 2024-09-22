@@ -1,0 +1,152 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div id="editOptionsContainer">
+  <form method="POST" action="" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <p class="help is-danger">
+      {{ form.non_field_errors }}
+    </p>
+
+    <div class="searchoptions">
+
+    <div class="field">
+      <label for="{{ form.title.id_for_label }}" class="label">Title</label>
+      <div class="control has-icons-left">
+        <input name="title" id="title" placeholder="Title" class="input is-medium" value="{{room.title}}">
+        <div class="icon is-left">
+          <i class="fas fa-solid fa-book"></i>
+        </div>
+      </div>
+      <p class="help is-danger">
+        {{ form.title.errors }}
+      </p>
+    </div>
+
+
+    <div class="field">
+      <label for="{{ form.damage.id_for_label }}" class="label">Damage</label>
+      <div class="control has-icons-left">
+          <input name="damage" id="damage" placeholder="Damage" class="input is-medium" value="{{room.damage|stringformat:'s' }}">
+        <div class="icon is-left">
+          <i class="fas fa-solid fa-trophy"></i>
+        </div>
+      </div>
+      <p class="help is-danger">
+        {{ form.damage.errors }}
+      </p>
+    </div>
+  </div>
+
+    <div class="field">
+      <label for="{{ form.proofURL.id_for_label }}" class="label">Proof URL</label>
+      <div class="control has-icons-left">
+        <input name="proofURL" id="proofURL" placeholder="Input your youtube video proof here" class="input is-medium" value="{{room.proofURL}}">
+        <div class="icon is-left">
+          <span class="icon-foo" style="
+    font-family: FontAwesome;
+">&#xf16a;</span>
+        </div>
+      </div>
+      <p class="help is-danger">
+        {{ form.proofURL.errors }}
+      </p>
+    </div>
+
+    <div class="searchoptions">
+    <div class="field">
+      <label for="{{ form.character.id_for_label }}" class="label">Character</label>
+      <div class="control has-icons-left">
+        <div class="select is-info">
+            {{ form.character }}
+        </div>
+        <div class="icon is-left">
+          <i class="fas fa-solid fa-user"></i>
+        </div>
+      </div>
+      <p class="help is-danger">
+        {{ form.character.errors }}
+      </p>
+    </div>
+
+    <div class="field">
+      <label for="{{ form.constellation.id_for_label }}" class="label">Constellation</label>
+      <div class="control has-icons-left">
+        <div class="select is-info">
+          <select name="constellation" required="">
+            <option value="" disabled hidden selected>-</option>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+          </select>
+        </div>
+        <div class="icon is-left">
+          <i class="fa-solid fa-star"></i>
+        </div>
+      </div>
+      <p class="help is-danger">
+        {{ form.constellation.errors }}
+      </p>
+    </div>    
+  </div>
+
+  <div class="searchoptions">
+
+    <div class="field">
+      <label for="{{ form.weapon.id_for_label }}" class="label">Weapon</label>
+      <div class="control has-icons-left">
+        <div class="select is-info">
+          {{ form.weapon }}
+        </div>
+        <div class="icon is-left">
+          <i class="fa-solid fa-wand-sparkles"></i>
+        </div>
+      </div>
+      <p class="help is-danger">
+        {{ form.weapon.errors }}
+      </p>
+    </div>    
+    <div class="field">
+      <label for="{{ form.refinement.id_for_label }}" class="label">Refinement</label>
+      <div class="control has-icons-left">
+        <div class="select is-info">
+          <select name="refinement" value="{{room.constellation}}" required="">
+            <option value="" disabled hidden selected>-</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </div>
+        <div class="icon is-left">
+          <i class="fa-solid fa-hammer"></i>
+        </div>
+      </div>
+      <p class="help is-danger">
+        {{ form.refinement.errors }}
+      </p>
+  </div>
+
+  </div>
+
+    <div class="field">
+      <label for="{{ form.description.id_for_label }}" class="label">Description</label>
+        <textarea name="description" id="description" class="textarea" rows="8">{{room.description}}</textarea>
+      </div>
+      <p class="help is-danger">
+        {{ form.description.errors }}
+      </p>
+    </div>
+
+    <input type="submit" value="Create" class="button is-success">
+  </form>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,5 @@
+# DateBase
+.db_data/db.sqlite3
+
+# env variables
+.env

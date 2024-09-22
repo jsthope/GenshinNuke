@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png' %}" >
+  <link rel="stylesheet" type="text/css" media="all" href="{% static 'styles/main.css' %}">
+  <meta name="keywords" content="suisse, valais, examens, résumés, planta">
+  <meta property="og:locale" content="fr_CH">
+  <meta property="og:site_name" content="GenshinNuke">
+  <meta name="description" content="A database of nuke records on Genshin Impact. Share your videos and compete with the community !">
+  <title>GenshinNuke</title>
+</head>
+<body>
+  <script src="https://kit.fontawesome.com/080c8cf38d.js" crossorigin="anonymous"></script>
+    <section class="hero is-primary is-medium">
+    <div class="hero-head is-primary">
+      {% include 'navbar.html' %}
+      <hr>
+    </div>
+
+    {% if request.get_full_path == '/' %}
+    <div class="hero-body">
+      <div class="container has-text-centered">
+        <h1>
+          GenshinNuke
+        </h1>
+        <h2 class="subtitle">
+          A Genshin Nuke records database
+        </h2>
+      </div>
+    </div>
+    {% endif %}
+  </section>
+  <main id="pageContents">
+    <!-- error messages -->
+    {% if messages %}
+      <div id="messagesContainer">
+        {% for message in messages %}
+        <article class="message is-primary">
+          <div class="message-body">
+              {{ message }}
+            </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {% block content %}
+
+    {% endblock %}
+  </main>
+  <footer>
+   genshinnuke.com is not affiliated with HoYoverse.
+   Genshin Impact, the game contents as well as the various materials are registered trademarks of HoYoverse.
+   <a href="/privacy-policy" style="font-size: 25px;float: right;">Privacy Policy</a>
+  </footer>
+</body>
+</html>

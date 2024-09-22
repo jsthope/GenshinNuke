@@ -1,0 +1,27 @@
+services:
+  django_gunicorn:
+    volumes:
+      - upload:/upload
+      - static:/static
+      - .db_data/db.sqlite3:/db.sqlite3
+    env_file:
+      - .env
+    build:
+      context: ./GenshinNuke
+    ports:
+      - "8000:8000"
+  nginx:
+    build: ./nginx
+    volumes:
+      - upload:/upload
+      - static:/static
+    ports:
+      - "80:80"
+    depends_on:
+      - django_gunicorn
+
+volumes:
+  upload:
+  static:
+  db.sqlite3:
+
