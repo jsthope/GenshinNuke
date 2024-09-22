@@ -16,7 +16,7 @@ services:
       - upload:/upload
       - static:/static
     ports:
-      - "80:80"
+      - "7777:7777"
     depends_on:
       - django_gunicorn
 
