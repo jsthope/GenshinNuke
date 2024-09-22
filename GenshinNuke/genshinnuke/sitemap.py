@@ -7,9 +7,9 @@ from django.urls import reverse
 from django.contrib.sites.models import Site
 
 class RoomsSitemap(Sitemap):
-    def get_urls(self, site=None, **kwargs):
+    def get_urls(self, site=None, protocol='None', **kwargs):
         site = Site(domain='genshinnuke.com', name='genshinnuke.com')
-        return super(RoomsSitemap, self).get_urls(site=site, protocol='https',**kwargs)
+        return super(RoomsSitemap, self).get_urls(site=site, protocol='https', **kwargs)
 
     def items(self):
         return Room.objects.all()
@@ -21,7 +21,7 @@ class StaticViewSitemap(sitemaps.Sitemap):
     priority = 0.5
     changefreq = "daily"
 
-    def get_urls(self, site=None, **kwargs):
+    def get_urls(self, site=None, protocol='None', **kwargs):
         site = Site(domain='genshinnuke.com', name='genshinnuke.com')
         return super(StaticViewSitemap, self).get_urls(site=site, protocol='https', **kwargs)
     def items(self):
