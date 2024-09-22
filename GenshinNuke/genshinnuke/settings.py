@@ -25,7 +25,7 @@ SECRET_KEY = environ.get("SECRET_KEY")
 DEBUG = environ.get("DEBUG") == "True"
 
 ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ['http://localhost']
+CSRF_TRUSTED_ORIGINS = ['https://genshinnuke.com']
 
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
