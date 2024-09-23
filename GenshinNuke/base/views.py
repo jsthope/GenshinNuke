@@ -112,14 +112,8 @@ def createRoom(request):
             room = form.save(commit=False)
             room.host = request.user
             room.proofURL = get_video_id(request.POST.get('proofURL'))
-
             room.save()
             return redirect('home')
-        
-        
-    print(form['character'])
-
-
     context = {'form': form}
     return render(request, 'base/room_form.html', context)
 
@@ -142,8 +136,7 @@ def updateRoom(request, pk):
 
             room.save()
             return redirect('home')
-
-    context = {'form': form,'room': room}
+    context = {'form': form}
     return render(request, 'base/room_form.html',context)
 
 @login_required(login_url='login')

@@ -20,3 +20,12 @@ def damage_color_selector(damage_type):
         case _:
             return ''
 
+@register.filter
+def noneable(value):
+    if value: return value
+    return ''
+
+@register.filter
+def to_int(value):
+    if value: return int(value)
+    return None

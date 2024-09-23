@@ -15,7 +15,7 @@
     <div class="field">
       <label for="{{ form.title.id_for_label }}" class="label">Title</label>
       <div class="control has-icons-left">
-        <input name="title" id="title" placeholder="Title" class="input is-medium" value="{{room.title}}">
+        <input name="title" id="title" placeholder="Title" class="input is-medium" value="{{form.title.value|noneable}}">
         <div class="icon is-left">
           <i class="fas fa-solid fa-book"></i>
         </div>
@@ -29,7 +29,7 @@
     <div class="field">
       <label for="{{ form.damage.id_for_label }}" class="label">Damage</label>
       <div class="control has-icons-left">
-          <input name="damage" id="damage" placeholder="Damage" class="input is-medium" value="{{room.damage|stringformat:'s' }}">
+          <input name="damage" id="damage" placeholder="Damage" class="input is-medium" value="{{form.damage.value|noneable|stringformat:'s'}}">
         <div class="icon is-left">
           <i class="fas fa-solid fa-trophy"></i>
         </div>
@@ -43,7 +43,7 @@
     <div class="field">
       <label for="{{ form.proofURL.id_for_label }}" class="label">Proof URL</label>
       <div class="control has-icons-left">
-        <input name="proofURL" id="proofURL" placeholder="Input your youtube video proof here" class="input is-medium" value="{{room.proofURL}}">
+        <input name="proofURL" id="proofURL" placeholder="Input your youtube video proof here" class="input is-medium" value="{{form.proofURL.value|noneable}}">
         <div class="icon is-left">
           <span class="icon-foo" style="
     font-family: FontAwesome;
@@ -76,14 +76,14 @@
       <div class="control has-icons-left">
         <div class="select is-info">
           <select name="constellation" required="">
-            <option value="" disabled hidden selected>-</option>
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
+            <option value="" disabled hidden {% if form.constellation.value == None %}selected{%endif%} >-</option>
+            <option value="0" {% if form.constellation.value|to_int == 0 %}selected{%endif%} >0</option> 
+            <option value="1" {% if form.constellation.value|to_int == 1 %}selected{%endif%} >1</option>    
+            <option value="2" {% if form.constellation.value|to_int == 2 %}selected{%endif%} >2</option> 
+            <option value="3" {% if form.constellation.value|to_int == 3 %}selected{%endif%} >3</option>              
+            <option value="4" {% if form.constellation.value|to_int == 4 %}selected{%endif%} >4</option> 
+            <option value="5" {% if form.constellation.value|to_int == 5 %}selected{%endif%} >5</option>  
+            <option value="6" {% if form.constellation.value|to_int == 6 %}selected{%endif%} >6</option>  
           </select>
         </div>
         <div class="icon is-left">
@@ -116,13 +116,13 @@
       <label for="{{ form.refinement.id_for_label }}" class="label">Refinement</label>
       <div class="control has-icons-left">
         <div class="select is-info">
-          <select name="refinement" value="{{room.constellation}}" required="">
-            <option value="" disabled hidden selected>-</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
+          <select name="refinement" required="">
+            <option value="" disabled hidden {% if form.refinement.value == None %}selected{%endif%} >-</option>
+            <option value="1" {% if form.refinement.value|to_int == 1 %}selected{%endif%} >1</option>
+            <option value="2" {% if form.refinement.value|to_int == 2 %}selected{%endif%} >2</option>
+            <option value="3" {% if form.refinement.value|to_int == 3 %}selected{%endif%} >3</option>         
+            <option value="4" {% if form.refinement.value|to_int == 4 %}selected{%endif%} >4</option>
+            <option value="5" {% if form.refinement.value|to_int == 5 %}selected{%endif%} >5</option>
           </select>
         </div>
         <div class="icon is-left">
@@ -138,7 +138,7 @@
 
     <div class="field">
       <label for="{{ form.description.id_for_label }}" class="label">Description</label>
-        <textarea name="description" id="description" class="textarea" rows="8">{{room.description}}</textarea>
+        <textarea name="description" id="description" class="textarea" rows="8">{{form.description.value|noneable}}</textarea>
       </div>
       <p class="help is-danger">
         {{ form.description.errors }}
